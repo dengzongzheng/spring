@@ -41,7 +41,9 @@ repositories {
 }
 
 dependencyManagement {
-
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-starter-parent:Brixton.BUILD-SNAPSHOT"
+    }
 }
 
 dependencies {
@@ -49,6 +51,7 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter"
     compile "org.springframework.boot:spring-boot-starter-undertow"
     compile "org.springframework.boot:spring-boot-starter-jersey"
+    compile "org.springframework.cloud:spring-cloud-starter-eureka"
     compile 'com.google.guava:guava:19.0'
     compile 'com.alibaba:fastjson:1.2.7'
 
