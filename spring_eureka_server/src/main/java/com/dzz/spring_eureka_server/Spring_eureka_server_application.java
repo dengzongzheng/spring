@@ -1,6 +1,7 @@
 package com.dzz.spring_eureka_server;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -8,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @SpringBootApplication
 @Configuration
+@EnableEurekaServer
 public class Spring_eureka_server_application {
 
     public static void main(String args[]){

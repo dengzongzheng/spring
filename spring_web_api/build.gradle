@@ -8,10 +8,11 @@ buildscript {
         springCloudVersion = "Brixton.M4"
     }
     repositories {
-        mavenLocal()
-        maven { url "http://repo.spring.io/libs-release" }
+        maven { url 'https://repo.spring.io/release/' }
+        maven { url "http://repo.spring.io/libs-snapshot-local" }
+        maven { url "http://repo.spring.io/libs-milestone-local" }
+        maven { url "http://repo.spring.io/libs-release-local" }
         jcenter()
-        mavenCentral()
     }
     dependencies {
         classpath "io.spring.gradle:dependency-management-plugin:0.5.4.RELEASE"
@@ -19,23 +20,31 @@ buildscript {
     }
 }
 
-apply plugin: "java"
-apply plugin: "eclipse"
 apply plugin: "idea"
+apply plugin: "eclipse"
 apply plugin: "maven-publish"
+apply plugin: "java"
 
 def jdkVersion = 1.8
 sourceCompatibility = jdkVersion
 targetCompatibility = jdkVersion
 
 repositories {
-    maven { url "http://repo.spring.io/libs-release" }
-    maven { url "http://repo.spring.io/libs-milestone" }
+    maven { url 'https://repo.spring.io/release/' }
+    maven { url "http://repo.spring.io/libs-snapshot-local" }
+    maven { url "http://repo.spring.io/libs-milestone-local" }
+    maven { url "http://repo.spring.io/libs-release-local" }
     jcenter()
-    mavenCentral()
 }
 
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+eclipse {
+    classpath {
+        containers.remove("org.eclipse.jdt.launching.JRE_CONTAINER")
+        containers "org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"
+    }
 }
