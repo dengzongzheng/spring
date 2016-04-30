@@ -1,0 +1,38 @@
+# Web容器配置
+server:
+  port: 8082
+  undertow:
+    accesslog:
+      # 开启Undertow访问日志
+      enabled: false
+    
+
+# 不使用发现服务，直接指定Service地址地表
+# 不能与发现服务同时使用
+#ribbon:
+#  eureka:
+#    enabled: false
+#fs-jyhouse-second:
+#  ribbon:
+#    listOfServers: 10.10.33.24:8080
+
+# Log 配置 级别大写 TRACE|DEBUG|INFO|WARN|ERROR
+logging:
+  level:
+    #root: INFO
+    com.dzz: INFO
+
+spring:
+  velocity:
+    suffix: .html
+    cache: false
+    check-template-location: true
+    charset: UTF-8
+    content-type: text/html
+    date-tool-attribute: dateTool
+    number-tool-attribute: numberTool
+    toolbox-config-location: toolbox.xml
+    expose-spring-macro-helpers: true
+    expose-request-attributes: true
+    expose-session-attributes: true
+
