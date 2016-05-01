@@ -22,9 +22,6 @@ logging:
     #root: INFO
     com.dzz: INFO
 
-spring:
-  application:
-    name: spring_web_mongo
 eureka:
   client:
     service-url:
