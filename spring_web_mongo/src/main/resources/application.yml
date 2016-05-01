@@ -5,7 +5,7 @@ server:
     accesslog:
       # 开启Undertow访问日志
       enabled: false
-    
+
 
 # 不使用发现服务，直接指定Service地址地表
 # 不能与发现服务同时使用
@@ -21,3 +21,11 @@ logging:
   level:
     #root: INFO
     com.dzz: INFO
+
+spring:
+  application:
+    name: spring_web_mongo
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

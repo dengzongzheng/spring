@@ -8,6 +8,7 @@ buildscript {
         springCloudVersion = "Brixton.M4"
     }
     repositories {
+        mavenLocal()
         maven { url 'https://repo.spring.io/release/' }
         maven { url "http://repo.spring.io/libs-snapshot-local" }
         maven { url "http://repo.spring.io/libs-milestone-local" }
@@ -33,6 +34,7 @@ sourceCompatibility = jdkVersion
 targetCompatibility = jdkVersion
 
 repositories {
+    mavenLocal()
     maven { url 'https://repo.spring.io/release/' }
     maven { url "http://repo.spring.io/libs-snapshot-local" }
     maven { url "http://repo.spring.io/libs-milestone-local" }
@@ -49,12 +51,15 @@ dependencyManagement {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile "org.springframework.boot:spring-boot-starter"
+    compile "org.springframework.boot:spring-boot-starter-web"
     compile "org.springframework.boot:spring-boot-starter-undertow"
-    compile "org.springframework.boot:spring-boot-starter-jersey"
     compile "org.springframework.cloud:spring-cloud-starter-eureka"
+    compile "org.springframework.cloud:spring-cloud-starter-feign"
+    compile "org.springframework.boot:spring-boot-starter-data-mongodb"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    compile "org.glassfish.jersey.core:jersey-server:2.22.2"
     compile 'com.google.guava:guava:19.0'
     compile 'com.alibaba:fastjson:1.2.7'
-
     compile project(':spring_web_api')
 
 }
