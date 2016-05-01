@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <title>欢迎使用</title>
+     <script src="libs/jquery-1.8.3.min.js" type="text/javascript"></script>
+     <script src="libs/jsrender.min.js" type="text/javascript"></script>
+     <script src="js/common/common.js" type="text/javascript"></script>
+     <script src="js/city/city.js" type="text/javascript"></script>
+     <script id="city_template" type="text/x-jsrender">
+      {{:cityId}}-{{:cityName}}
+     </script>
+     <script type="text/javascript">
+          $("#search").click(function () {
+               var condition = {};
+               if(""!=$("#city").val()){
+                    condition["city"]=$("#city").val();
+               }
+               if(""!=$("#country").val()){
+                    condition["country"]=$("#country").val();
+               }
+               if(""!=$("#biz").val()){
+                    condition["biz"]=$("#biz").val();
+               }
+               if(""!=$("#area").val()){
+                    condition["area"]=$("#area").val();
+               }
+               alert(condition);
+          });
+
+     </script>
+</head>
+<body>
+     城市:<input id="city" name="">
+     区县:<input id="country" name="">
+     商圈:<input id="biz" name="">
+     面积:<input id="area" name="">
+     <button id="search">查询</button>
+
+</body>
+</html>

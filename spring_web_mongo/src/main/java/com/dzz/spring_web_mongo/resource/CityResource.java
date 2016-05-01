@@ -26,6 +26,7 @@ public class CityResource {
     @GET
     @Path("/getCity")
     public Response getCitys(){
+        System.out.println("ddd");
         List<City> citys = cityService.getCitys();
         return Response.ok().entity(citys).build();
     }
