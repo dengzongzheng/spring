@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>无标题文档</title>
+    <link href="http://static.jyall.com/eos/goldcenter/css/reset.css" type="text/css" rel="stylesheet"/>
+    <link href="http://static.jyall.com/eos/goldcenter/css/promotion-system.css" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" src="http://static.jyall.com/eos/goldcenter/js/lib.js"></script>
+    <script type="text/javascript" src="http://static.jyall.com/eos/goldcenter/js/eos-fang.js"></script>
+    <script type="text/javascript" src="http://static.jyall.com/jiaju_old/lib/jsrender/jsrender.min.js"></script>
+    <script type="text/javascript" src="/js/common/common.js"></script>
+    <script type="text/javascript" src="/js/sale_house/sale_house.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            goToTop();
+        })
+    </script>
+    <script id="city_template" type="text/x-jsrender">
+        <option value="{{:id}}">{{:name}}</option>
+    </script>
+    <script id="sale_houses_template" type="text/x-jsrender">
+        <tr>
+                <td>{{:houseId}}</td>
+                <td>{{:position}}</td>
+                <td>小区名称</td>
+                <td>{{:amounts}}</td>
+                <td>{{:area}}</td>
+                <td>房源渠道</td>
+                <td>状态 </td>
+                <td>发布时间 (2016/04/27)</td>
+                <td><a href="/saleHouseManage/houseDetail?houseId={{:houseId}}">查看</a><a href="/saleHouseManage/editHouse?houseId={{:houseId}}">编辑</a></td>
+        </tr>
+    </script>
+    <script id="mould-page_template" type="text/x-jsrender">
+        <div class="page clearfix">
+                <div class="number">
+                共有{{:totalCount}}条记录 每页显示
+                <select class="page-button">
+                    <option>10</option>
+                    <option>30</option>
+                    <option>50</option>
+                    <option>60</option>
+                    <option>100</option>
+                </select>
+                条
+                </div>
+                <div class="page-list clearfix" id="pagination-holder">
+                <a href="#">首页</a>
+                <a href="#">上一页</a>
+                {{for pageList}}
+                    {{:#index+1}}
+                {{/for}}
+                <a href="#">下一页</a>
+                <a href="#">尾页</a>
+                <span class="pagelabel">共{{:totalPage}}页 到第 <input class="pageNum" type="number"> 页</span>
+                <input class="pagebtn" type="button" onclick="changeCurrPage('go_page','querylist')" value="确定"/>
+                </div>
+                </div>
+    </script>
+</head>
+
+<body>
+<div id="iframeWarp" class="right-inner">
+    <div class="container">
+        <div class="searchbox">
+            <span>城市：
+                <select name="cityId" id="cityId">
+                    <option value=0 selected="true">全部</option>
+                </select>
+            </span>
+            <span>区/县：
+                <select name="countyId" id="countyId">
+                    <option value=0 selected="true">全部</option>
+                </select>
+            </span>
+
+            <span>商圈：
+                <select name="businessDistrictId" id="businessDistrictId">
+                    <option value=0 selected="">全部</option>
+                </select>
+            </span>
+            <span>户型：
+                <select name="room" id="room">
+                    <option value=0 selected="">全部</option>
+                    <option value="1">一室</option>
+                    <option value="2">二室</option>
+                    <option value="3">三室</option>
+                    <option value="4">四室</option>
+                    <option value="5">五室</option>
+                    <option value="6">五室以上</option>
+                </select>
+            </span>
+            <span>售价：<input type="text" class="w50" id="amountsStart"/> 万</span>
+            <span>-</span>
+            <span><input type="text" class="w50" id="amountsEnd"/> 万</span>
+                  <span>建筑面积：
+                <select name="area" id="area">
+                    <option value="" selected="">全部</option>
+                    <option value="0-50">50平米以下</option>
+                    <option value="50-70">50-70平米</option>
+                    <option value="70-90">70-90平米</option>
+                    <option value="90-110">90-110平米</option>
+                    <option value="110-130">110-130平米</option>
+                    <option value="130-150">130-150平米</option>
+                    <option value="150-200">150-200平米</option>
+                    <option value="200-300">200-300平米</option>
+                    <option value="300-0">300平米以上</option>
+                </select>
+            </span>
+                  <span>房源状态：
+                <select name="status" id="status">
+                    <option value="" selected="">全部</option>
+                    <option value="1">已审核</option>
+                    <option value="3">待审核</option>
+                </select>
+            </span>
+            <input type="text" class="w250" id="key" />
+            <input type="button" value="查询" class="blue-button" id="getHouse"/>
+            <span class="leadBox">
+                <input type="button" value="新增" onclick="window.location.href='/saleHouseManage/addHouse'" class="blue-button"/>
+            </span>
+
+        </div>
+    </div>
+    <div class="data-table" >
+        <div class="mould-page" id="mould-page"></div>
+        <table width="100%" cellspacing="0" cellpadding="0">
+            <thead>
+            <tr>
+                <th>房源ID</th>
+                <th>房源所在区域</th>
+                <th>小区名称</th>
+                <th>售价（万元）</th>
+                <th>户型/建筑面积（平米）</th>
+                <th>房源渠道</th>
+                <th>状态</th>
+                <th>发布时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="sale_houses"></tbody>
+        </table>
+    </div>
+    <a id="backTop" class="totop" href="#iframeWarp"></a>
+</div>
+</body>
+</html>

@@ -4,10 +4,12 @@
      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
      <title>欢迎使用</title>
      <script src="libs/jquery-1.8.3.min.js" type="text/javascript"></script>
+     <script src="libs/jquery.twbsPagination.min.js" type="text/javascript"></script>
      <script src="libs/jsrender.min.js" type="text/javascript"></script>
      <script src="js/common/common.js" type="text/javascript"></script>
      <script src="js/city/city.js" type="text/javascript"></script>
      <script src="js/jsrender/jsrender.js" type="text/javascript"></script>
+
      <script id="city_template" type="text/x-jsrender">
       {{:cityId}}-{{:cityName}}
      </script>
@@ -56,9 +58,9 @@
      面积:<input id="area" name="">
      <button  id="search">查询</button>
 
-     <div  id="pagination-holder">
+     <ul  id="pagination-holder">
 
-     </div>
+     </ul>
 
 </body>
 </html>

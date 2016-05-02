@@ -1,5 +1,6 @@
 $(function () {
-   jsrender.pages();
+   //jsrender.pages();
+    jsrender.pagination();
 });
 var jsrender = {
 
@@ -11,5 +12,20 @@ var jsrender = {
             data["pageList"]= new Array(data.totalPage);
         }
         $("#pagination-holder").html($("#pages").render(data));
+    },
+    "pagination":function () {
+        $('#pagination-holder').twbsPagination({
+            first:"首页",
+            prev:"上一页",
+            next:"下一页",
+            last:"尾页",
+            paginationClass:"page-list clearfix",
+            visiblePages:10,
+            initiateStartPageClick:false,
+            totalPages: 35,
+            onPageClick: function (event, page) {
+                alert(page);
+            }
+        });
     }
 };
