@@ -1,3 +1,4 @@
 include "spring_eureka_server","spring_web","spring_web_api","spring_web_mongo"
 include 'spring_cache'
+include 'spring_solr'
 
